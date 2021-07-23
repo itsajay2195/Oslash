@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     },
     rectangle: {
         alignSelf: 'center',
-        width: '80%',
+        width: '90%',
         marginTop:10,
         borderTopWidth:6,
         borderRadius:80,
@@ -143,6 +143,9 @@ const styles = StyleSheet.create({
       },
     seatsWrapper: {
         flex: 1,
+        width: '95%',
+        marginLeft:10,
+        marginRight:10,
         backgroundColor: '#4169E1',
         paddingTop: '10%',
 

@@ -12,24 +12,24 @@ const CheckoutPage = (props) => {
 
 
     return (
-        expired ? <View style={{ flex: 1, justifyContent: 'center' }}>
+        expired ? <View style={{ flex: 1, justifyContent: 'center'}}>
             <Text style={{ textAlign: 'center', fontSize: 30 }}>Timeout!</Text>
             <View style={{ marginHorizontal: '30%' }} >
                 <Button onPress={() => props.navigation.navigate('Movies')} textLabel='Go to Home ->'></Button>
             </View>
 
         </View>
-            : <View style={{ flex: 1 }}>
+            : <View style={styles.container}>
                 <Timer setExp={setExpired} selected min={minutes} clearSelected={setSelected}
                     sec={seconds} setmin={setMinutes} setsec={setSeconds} >
                 </Timer>
-                <View style={{ flex: 1, alignItems: 'center' }}>
+                <View style={styles.infoCard}>
                     <Image source={{ uri: poster }} style={styles.image} />
                     <Text style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>Rows Selected: </Text>
                     <Text numberOfLines={3} style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}>{selected.toLocaleString()}</Text>
                    
                 </View>
-                <View style={{margin:'10%',flexDirection:'row',borderWidth:1,borderColor:'#D0D0D0'}}>
+                <View style={styles.billCard}>
                     <View style={{paddingTop: '2%',flex:1,alignItems: 'flex-end'}}>
                         <Text numberOfLines={1} style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>Current Total:</Text>
                         <Text numberOfLines={1} style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>GST:</Text>
@@ -45,7 +45,6 @@ const CheckoutPage = (props) => {
 
                 <View style={{ flex: 1, marginHorizontal: '30%', alignItems: 'center' }}>
                     <Button textLabel='Checkout ->'></Button>
-
                     <Button onPress={() => props.navigation.navigate('Movies', { selected, poster, title, genre })} textLabel='<-Go to Home'></Button>
                 </View>
 
@@ -57,6 +56,17 @@ const CheckoutPage = (props) => {
 export default CheckoutPage;
 
 const styles = StyleSheet.create({
+    container:{
+        flex: 1,backgroundColor:'#FFFAF0' 
+    },
+    infoCard:{ 
+        flex: 1,
+         alignItems: 'center' },
+    billCard:{
+        margin:'10%',
+        flexDirection:'row',
+        borderWidth:1,
+        borderColor:'#D0D0D0'},
     image: {
         margin: 10,
         borderRadius: 10,                 // rounded corners
@@ -71,9 +81,3 @@ const styles = StyleSheet.create({
     }
 })
 
-{/* <Text numberOfLines={1} style={{ paddingTop: 5, fontFamily: "sans-serif-medium", fontSize: 16 }}>Current Total:
-                        <Text style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}> {total} INR</Text>
-                    </Text>
-                    <Text numberOfLines={1} style={{ paddingTop: 5, fontFamily: "sans-serif-medium", fontSize: 16 }}>GST:
-                        <Text style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}> 100 INR</Text>
-                    </Text> */}
