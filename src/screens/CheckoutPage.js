@@ -5,7 +5,7 @@ import Timer from '../components/Timer'
 
 const CheckoutPage = (props) => {
 
-    const { selected, poster, title, genre, setSelected } = props.route.params
+    const { selected, poster, title, genre, total, setSelected } = props.route.params
     const [minutes, setMinutes] = useState(5);
     const [seconds, setSeconds] = useState(0);
     const [expired, setExpired] = useState(false)
@@ -14,10 +14,10 @@ const CheckoutPage = (props) => {
     return (
         expired ? <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text style={{ textAlign: 'center', fontSize: 30 }}>Timeout!</Text>
-            <View style={{marginHorizontal:'30%'}} >
-            <Button onPress={() => props.navigation.navigate('Movies')} textLabel='Go to Home ->'></Button>
+            <View style={{ marginHorizontal: '30%' }} >
+                <Button onPress={() => props.navigation.navigate('Movies')} textLabel='Go to Home ->'></Button>
             </View>
-            
+
         </View>
             : <View style={{ flex: 1 }}>
                 <Timer setExp={setExpired} selected min={minutes} clearSelected={setSelected}
@@ -27,10 +27,25 @@ const CheckoutPage = (props) => {
                     <Image source={{ uri: poster }} style={styles.image} />
                     <Text style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>Rows Selected: </Text>
                     <Text numberOfLines={3} style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}>{selected.toLocaleString()}</Text>
+                   
                 </View>
+                <View style={{margin:'10%',flexDirection:'row',borderWidth:1,borderColor:'#D0D0D0'}}>
+                    <View style={{paddingTop: '2%',flex:1,alignItems: 'flex-end'}}>
+                        <Text numberOfLines={1} style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>Current Total:</Text>
+                        <Text numberOfLines={1} style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>GST:</Text>
+                        <Text numberOfLines={1} style={{ fontFamily: "sans-serif-medium", fontSize: 16 }}>Total:</Text>
+                    </View>
+                    <View style={{paddingTop: '2%',flex:1,alignItems: 'flex-start'}}>
+                        <Text style={{ fontFamily: "sans-serif-light", fontSize: 16 }}> {total} INR</Text>
+                        <Text style={{ fontFamily: "sans-serif-light", fontSize: 16 }}> 100 INR</Text>
+                        <Text style={{ fontFamily: "sans-serif-light", fontSize: 16 }}> {total+100} INR</Text>
+                    </View>
+                   
+                </View>
+
                 <View style={{ flex: 1, marginHorizontal: '30%', alignItems: 'center' }}>
                     <Button textLabel='Checkout ->'></Button>
-                    
+
                     <Button onPress={() => props.navigation.navigate('Movies', { selected, poster, title, genre })} textLabel='<-Go to Home'></Button>
                 </View>
 
@@ -48,4 +63,17 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '70%'
     },
+    underLine: {
+        width: '50%',
+        alignSelf: 'center',
+        borderBottomColor: 'gray',
+        borderBottomWidth: 2
+    }
 })
+
+{/* <Text numberOfLines={1} style={{ paddingTop: 5, fontFamily: "sans-serif-medium", fontSize: 16 }}>Current Total:
+                        <Text style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}> {total} INR</Text>
+                    </Text>
+                    <Text numberOfLines={1} style={{ paddingTop: 5, fontFamily: "sans-serif-medium", fontSize: 16 }}>GST:
+                        <Text style={{ paddingTop: 5, fontFamily: "sans-serif-light", fontSize: 18 }}> 100 INR</Text>
+                    </Text> */}

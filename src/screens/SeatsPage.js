@@ -2,19 +2,35 @@ import { View, Animated, Text, StyleSheet, Image, TouchableOpacity } from 'react
 import React, { useState,useRef,useEffect } from 'react';
 import Seats from '../components/Seats'
 import Button from '../components/Button'
+import {seatArrange} from '../utils/data'
 
 
 const SeatsPage = (props) => {
     const [selected, setSelected] = useState([])
     const [total, totalCounter] = useState(0)
-    const [seatList,setseatsList] = useState([])
+    const [seatList,setseatsList] = useState(function(){
+        let data =seatArrange
+        let seatings=[]
+        for(let i=0; i< data.numberOfRows; i++) {
+        let rowArray = [];
+        for(let j=0; j<data.numberOfColumns; j++) {
+          let rowName = String.fromCharCode(i+65)
+          let seatNumber = `${rowName}-${j}`
+          rowArray.push({ 
+            'seatNumber': seatNumber,
+            'unavailableSeat': data.unavailableSeats.includes(seatNumber),
+            'disabledSeat': data.bookedSeats.includes(seatNumber),
+            'price': data.pricesList[rowName] ? data.pricesList[rowName] : data.defaultPrice
+           })
+        }
+        seatings.push(rowArray)
+       }
+      
+        return seatings 
+    })
     
-    useEffect(() => {
-        fetch("/api/seats")
-         .then((res) => res.json())
-         .then((json) => setseatsList(json.seats))
-     }, [])
-   
+
+    //  }, [])
     const{poster,title,genre,} = props.route.params
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -33,8 +49,10 @@ const SeatsPage = (props) => {
       }, [])
 
 
-   
 
+     
+     
+    
    
 
 
@@ -57,6 +75,7 @@ const SeatsPage = (props) => {
                 />
 
                 )}
+                
                 <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
                     <Text><Text style={{fontSize:18,color:'green'}}>{'\u2B24'} </Text>Selected</Text>
                     <Text><Text style={{fontSize:18,color:'gray'}}>{'\u2B24'} </Text>Booked</Text>
@@ -86,7 +105,7 @@ const SeatsPage = (props) => {
                             <View style={[styles.underLine,{width:'100%'}]} />
                             {/* <TouchableOpacity onPress={()=>props.navigation.navigate('Checkout', { selected,info})}><Text>Hi</Text></TouchableOpacity> */}
                             <Button onPress ={()=>{
-                                props.navigation.navigate('Checkout', { selected,poster,title,genre,setSelected})}} textLabel='Proceed ->'></Button>
+                                props.navigation.navigate('Checkout', { selected,poster,title,genre,total,setSelected})}} textLabel='Proceed ->'></Button>
                         </View> 
                         : 
                         <View style={{ alignItems: 'center',flex: 1,justifyContent: 'center'}}>

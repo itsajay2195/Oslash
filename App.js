@@ -18,15 +18,9 @@ if (window.server) {
         return {
           movies: movies,
         }
-      }),
-      this.get("/api/seats", () => {
-        return {
-          seats: seatings,
-        }
       })
     },
   })
-
 export default function App() {
 
   return (

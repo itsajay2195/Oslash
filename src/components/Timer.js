@@ -25,7 +25,7 @@ const Timer = (props) => {
               };
         },);
     return ( 
-        <Text>{props.min}:{props.sec < 10 ?  `0${props.sec}` : props.sec}</Text>
+        <Text><Text>Your booking will expire in: </Text>{props.min} minutes :{props.sec < 10 ?  `0${props.sec}seconds` : props.sec+' seconds'}</Text>
 
      );
 }

@@ -24,26 +24,21 @@ const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
     }
 
 
-    const Box = () => {
-        return (
-            <View>
-
-            </View>
-        )
-    }
+    
+    
 
     return (
 
         <View style={{ alignItems: 'center' }} >
-
+            {console.warn(seats)}
             <FlatList
                 data={seats}
                 extraData={selected}
                 numColumns={seats.length}
                 keyExtractor={(item, index) => item.id}
                 renderItem={({ item }) => (
-                    item.enabled ? <TouchableOpacity style={[styles.seatContainer, { backgroundColor: handleCheck(item.id) ? 'green' : '#FFFAF0' }]} onPress={() => handleClick(item.id, 10)}></TouchableOpacity>
-                        : <TouchableOpacity style={[styles.seatContainer, { borderColor: 'transparent' }]} />
+                    item.unavailableSeat ?  <TouchableOpacity style={[styles.seatContainer, { borderColor: 'transparent' }]} />
+                    :<TouchableOpacity style={[styles.seatContainer, { backgroundColor: handleCheck(item.seatNumber) ? 'green' : '#FFFAF0' }]} onPress={() => handleClick(item.seatNumber, item.price)}></TouchableOpacity>
                 )}
 
             />

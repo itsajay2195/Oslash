@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react'
-import { View, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ScrollView, ActivityIndicator, StyleSheet,Alert } from 'react-native';
 import Poster from '../components/Poster'
 
 
@@ -16,7 +16,7 @@ const Movies = (props) => {
             setTimeout(() => {setMovies(json.movies)
                 setLoader(false)}, 1000)
             }
-          )
+          ).catch((error)=>Alert.alert(error))
       }, [])
 
     return ( loader ? <View style={{flex:1, justifyContent:'center'}}><ActivityIndicator size="large" color="#4169E1"/></View>:
