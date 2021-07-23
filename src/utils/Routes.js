@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator, } from '@react-navigation/stack';
 import Movies from '../screens/MoviesPage'
 import SeatsPage from '../screens/SeatsPage';
-// import CheckoutPage from '../screens/CheckoutPage';
+import CheckoutPage from '../screens/CheckoutPage';
 
 const Routes = () => {
   const mainStack = createStackNavigator();
@@ -17,7 +17,7 @@ const Routes = () => {
         }
       }} />
       <mainStack.Screen name="Choose Seats" component={SeatsPage} />
-      {/* <mainStack.Screen name="Checkout" component={CheckoutPage} /> */}
+      <mainStack.Screen name="Checkout" component={CheckoutPage} />
     </mainStack.Navigator>
   );
 }

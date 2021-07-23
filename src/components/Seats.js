@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
-import { seatings, } from '../services/AllServices'
+
 
 //selected,selectedChange,
 const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {

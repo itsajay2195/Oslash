@@ -1,15 +1,25 @@
-import React from 'react'
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import { movies } from '../services/AllServices'
+import React, { useState, useEffect }  from 'react'
+import { View, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import Poster from '../components/Poster'
 
 
 
 
 const Movies = (props) => {
+    let [moviesList, setMovies] = useState([])
+    const[loader,setLoader] = useState(true)
+    
+    useEffect(() => {
+         fetch("/api/movies")
+          .then((res) => res.json())
+          .then((json) => {
+            setTimeout(() => {setMovies(json.movies)
+                setLoader(false)}, 1000)
+            }
+          )
+      }, [])
 
-
-    return (
+    return ( loader ? <View style={{flex:1, justifyContent:'center'}}><ActivityIndicator size="large" color="#4169E1"/></View>:
         <View style={{backgroundColor:'#FFFAF0'}}>
             {/* <TouchableOpacity onPress={() => props.navigation.navigate('Seats')}>
                 <Text>Hi</Text>
@@ -18,7 +28,7 @@ const Movies = (props) => {
                 // Hide all scroll indicators
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}>
-                {movies.map((movie, index) => <Poster movie={movie}
+                {moviesList.map((movie, index) => <Poster movie={movie}
                     key={index}
                     Nav={props.navigation} />
                 )}

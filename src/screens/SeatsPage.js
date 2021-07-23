@@ -2,35 +2,20 @@ import { View, Animated, Text, StyleSheet, Image, TouchableOpacity } from 'react
 import React, { useState,useRef,useEffect } from 'react';
 import Seats from '../components/Seats'
 import Button from '../components/Button'
-import { seatings } from '../services/AllServices'
-
-
 
 
 const SeatsPage = (props) => {
     const [selected, setSelected] = useState([])
     const [total, totalCounter] = useState(0)
-    const [timer, setTimer] =useState(0)
-
-    function useInterval(callback, delay) {
-        const savedCallback = useRef();
-      
-        // Remember the latest callback.
-        useEffect(() => {
-          savedCallback.current = callback;
-        }, [callback]);
-      
-        // Set up the interval.
-        useEffect(() => {
-          let id = setInterval(() => {
-            savedCallback.current();
-          }, delay);
-          return () => clearInterval(id);
-        }, [delay]);
-      }
-
-
-    const{poster,title,genre,states} = props.route.params
+    const [seatList,setseatsList] = useState([])
+    
+    useEffect(() => {
+        fetch("/api/seats")
+         .then((res) => res.json())
+         .then((json) => setseatsList(json.seats))
+     }, [])
+   
+    const{poster,title,genre,} = props.route.params
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -63,7 +48,7 @@ const SeatsPage = (props) => {
             // Bind opacity to animated value
             opacity: fadeAnim
           }]}>
-                {seatings.map((seat, index) => <Seats seats={seat}
+                {seatList.map((seat, index) => <Seats seats={seat}
                     key={index}
                     selected={selected}
                     selectedChange={setSelected}
@@ -101,7 +86,7 @@ const SeatsPage = (props) => {
                             <View style={[styles.underLine,{width:'100%'}]} />
                             {/* <TouchableOpacity onPress={()=>props.navigation.navigate('Checkout', { selected,info})}><Text>Hi</Text></TouchableOpacity> */}
                             <Button onPress ={()=>{
-                                props.navigation.navigate('Checkout', { selected,poster,title,genre,timer,setSelected})}} textLabel='Proceed ->'></Button>
+                                props.navigation.navigate('Checkout', { selected,poster,title,genre,setSelected})}} textLabel='Proceed ->'></Button>
                         </View> 
                         : 
                         <View style={{ alignItems: 'center',flex: 1,justifyContent: 'center'}}>
