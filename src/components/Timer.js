@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text,Image } from 'react-native'
+
 
 const Timer = (props) => {
     useEffect(() => {
@@ -24,7 +25,7 @@ const Timer = (props) => {
         };
     });
     return (
-        <Text style={{ textAlign: 'center' }}><Text>Your booking will expire in: </Text>{props.min} minutes :{props.sec < 10 ? `0${props.sec}seconds` : props.sec + ' seconds'}</Text>
+        <Text style={{ textAlign: 'center' }}><Image style={{height:15,width:15}} source={ require('../utils/warning.jpeg') }></Image><Text>Your booking will expire in: </Text>{props.min} minutes :{props.sec < 10 ? `0${props.sec}seconds` : props.sec + ' seconds'}</Text>
 
     );
 }

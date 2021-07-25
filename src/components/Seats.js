@@ -19,7 +19,7 @@ const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
         } else {
             selectedChange([...selected, id])
             addTotal(total + price)
-            console.warn('selected is', selected)
+            // console.warn('selected is', selected)
         }
     }
 
@@ -30,7 +30,7 @@ const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
     return (
 
         <View style={{ alignItems: 'center' }} >
-            {console.warn(seats)}
+            {/* {console.warn(seats)} */}
             <FlatList
                 data={seats}
                 extraData={selected}
@@ -53,9 +53,11 @@ export default Seats;
 const styles = StyleSheet.create({
     seatContainer: {
         margin: 5,
-        height: 20,
-        width: 20,
+        height: 30,
+        width: 25,
         borderWidth: 2,
+        borderColor:'transparent',
+        borderRadius:5
     },
     seatSelected: {
         margin: 5,

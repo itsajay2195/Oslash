@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
     infoCardContainer: {
         flex: 1,
         backgroundColor: '#FFFAF0',
-        borderRadius: 20
+        borderTopEndRadius:20,
+        borderTopStartRadius:20
     },
     TitleWrapper: {
         alignItems: 'center',
