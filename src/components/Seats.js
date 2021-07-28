@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, StyleSheet, FlatList,Text, TouchableOpacity,Dimensions } from "react-native";
+import {seatArrange} from '../utils/data'
 
-
+const { width, height } = Dimensions.get('window');
 //selected,selectedChange,
 const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
 
@@ -52,9 +53,9 @@ export default Seats;
 
 const styles = StyleSheet.create({
     seatContainer: {
-        margin: 5,
-        height: 30,
-        width: 25,
+     
+        height: 20,
+        width: (width*0.9)/ seatArrange.numberOfColumns ,
         borderWidth: 2,
         borderColor:'transparent',
         borderRadius:5

@@ -77,6 +77,6 @@ export const movies =[
 
 
 
-export const seatArrange={numberOfRows:5,numberOfColumns :10,unavailableSeats :['A-4','B-4','C-4','D-4','E-4'],bookedSeats:['A-2'],
+export const seatArrange={numberOfRows:5,numberOfColumns :20,unavailableSeats :['A-4','B-4','C-4','D-4','E-4'],bookedSeats:['A-2'],
      pricesList:{'A': 200,'B': 100},defaultPrice:50}
 

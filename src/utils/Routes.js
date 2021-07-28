@@ -18,16 +18,17 @@ const Routes = () => {
         }
       }} />
       <mainStack.Screen name="Choose Seats" component={SeatsPage} options={{
-        title: "Movies List",
+        title: "Choose your Seats",
         headerStyle: {
           elevation: 0,
           backgroundColor: '#4169E1',
         }, headerTitleStyle: {
+          color:'white',
           fontWeight: '500',
         }
       }} />
       <mainStack.Screen name="Checkout" component={CheckoutPage} options={{
-        title: "Movies List",
+        title: "Checkout",
         headerStyle: {
           backgroundColor: '#FFFAF0',
           elevation: 0,

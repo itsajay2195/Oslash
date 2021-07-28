@@ -1,9 +1,10 @@
-import { View, Animated, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Animated, Text, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import React, { useState,useRef,useEffect } from 'react';
 import Seats from '../components/Seats'
 import Button from '../components/Button'
 import {seatArrange} from '../utils/data'
 
+const {height,width} = Dimensions.get('window');
 
 const SeatsPage = (props) => {
     const [selected, setSelected] = useState([])
@@ -57,7 +58,7 @@ const SeatsPage = (props) => {
 
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#4169E1' }}>
+        <View style={styles.container}>
             <View style={styles.rectangle}>
                 <Text style={{textAlign:"center",paddingTop:10,color:"#FFFAF0"}}>All Eyes here!</Text>
             </View>
@@ -66,6 +67,7 @@ const SeatsPage = (props) => {
             // Bind opacity to animated value
             opacity: fadeAnim
           }]}>
+              
                 {seatList.map((seat, index) => <Seats seats={seat}
                     key={index}
                     selected={selected}
@@ -75,6 +77,8 @@ const SeatsPage = (props) => {
                 />
 
                 )}
+               
+                
                 
                 <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
                     <Text><Text style={{fontSize:18,color:'green'}}>{'\u2B24'} </Text>Selected</Text>
@@ -92,9 +96,14 @@ const SeatsPage = (props) => {
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={styles.movieTitleWrapper}>
-                        <Image source={{ uri: poster }} style={styles.image} />
-                        <Text numberOfLines={1} style={styles.title}> Movie: <Text  style={{ fontFamily: "sans-serif-light", }}>{title}</Text></Text>
+                        <View style={{width:'60%',height:height/5}}>
+                             <Image source={{ uri: poster }} style={styles.image} />
+                        </View>
+                       <View style={{marginTop:10}}>   
+                       <Text numberOfLines={1} style={styles.title}> Movie: <Text  style={{ fontFamily: "sans-serif-light", }}>{title}</Text></Text>
                         <Text numberOfLines={1} style={styles.title}> Movie: <Text  style={{ fontFamily: "sans-serif-light", }}>{genre}</Text></Text>
+                       </View>
+                        
                     </View>
                     <View style={{ flex:1,margin: 20,alignItems: 'flex-start'}}>
                         {selected.length>0 
@@ -126,6 +135,12 @@ export default SeatsPage;
 
 
 const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        backgroundColor: '#4169E1' ,
+        
+    },
+
     underLine: {
         marginTop: '10%',
         width: '80%',
@@ -143,9 +158,8 @@ const styles = StyleSheet.create({
       },
     seatsWrapper: {
         flex: 1,
-        width: '95%',
-        marginLeft:10,
-        marginRight:10,
+        marginHorizontal:'5%',
+        width: '90%',
         backgroundColor: '#4169E1',
         paddingTop: '10%',
 
@@ -167,18 +181,16 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     movieTitleWrapper: {
-        flex:1,
+       
         alignItems: 'flex-start',
         width:'50%'
     },
     image: {
         margin: 10,
         borderRadius: 10,                 // rounded corners
-        width: '90%',
-        height: '70%'
+        width: '100%',
+        height: '100%'
+      
     },
 })
 
-// flexDirection:'row',
-//         alignItems:'center',
-//         justifyContent:'space-evenly',
