@@ -20,7 +20,7 @@ const SeatsPage = (props) => {
           rowArray.push({ 
             'seatNumber': seatNumber,
             'unavailableSeat': data.unavailableSeats.includes(seatNumber),
-            'disabledSeat': data.bookedSeats.includes(seatNumber),
+            'bookedSeat': data.bookedSeats.includes(seatNumber),
             'price': data.pricesList[rowName] ? data.pricesList[rowName] : data.defaultPrice
            })
         }
@@ -82,7 +82,7 @@ const SeatsPage = (props) => {
                 
                 <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
                     <Text><Text style={{fontSize:18,color:'green'}}>{'\u2B24'} </Text>Selected</Text>
-                    <Text><Text style={{fontSize:18,color:'gray'}}>{'\u2B24'} </Text>Booked</Text>
+                    <Text><Text style={{fontSize:18,color:'red'}}>{'\u2B24'} </Text>Booked</Text>
                     <Text><Text style={{fontSize:18,color:'white'}}>{'\u2B24'} </Text>Available</Text>
                 </View>
             </Animated.View>

@@ -7,7 +7,7 @@ const cols = 3, rows = 3;
 const Poster = (props) => {
 
 
-    const { Nav, movie: { title, genre, poster } } = props;
+    const { movie: { title, genre, poster } } = props;
 
 
     return (

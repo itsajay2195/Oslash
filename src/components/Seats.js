@@ -39,6 +39,7 @@ const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
                 keyExtractor={(item, index) => item.id}
                 renderItem={({ item }) => (
                     item.unavailableSeat ?  <TouchableOpacity style={[styles.seatContainer, { borderColor: 'transparent' }]} />
+                    :item.bookedSeat?<TouchableOpacity disabled={true} style={[styles.seatContainer, { backgroundColor:  'red' }]} onPress={() => handleClick(item.seatNumber, item.price)}></TouchableOpacity>
                     :<TouchableOpacity style={[styles.seatContainer, { backgroundColor: handleCheck(item.seatNumber) ? 'green' : '#FFFAF0' }]} onPress={() => handleClick(item.seatNumber, item.price)}></TouchableOpacity>
                 )}
 
