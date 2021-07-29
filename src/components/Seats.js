@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, FlatList,Text, TouchableOpacity,Dimensions } from "react-native";
 import {seatArrange} from '../utils/data'
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 //selected,selectedChange,
 const Seats = ({ seats, total, selected, selectedChange, addTotal }) => {
 

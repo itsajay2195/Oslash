@@ -12,13 +12,13 @@ const Poster = (props) => {
 
     return (
 
-        <TouchableOpacity style={styles.componentContainer} onPress={() => Nav.navigate('Choose Seats', { title, genre, poster })} >
+        <TouchableOpacity style={styles.componentContainer} onPress={() => props.navigation.navigate('Choose Seats', { title, genre, poster })} 
+        testID={"SeatsPage.Button"} >
             <View style={{ flex: 1 }}>
-                
                 <Image source={{ uri: poster }} style={styles.image} />
             </View>
-            <Text style={styles.title} numberOfLines={1}>{title}</Text>
-            <Text style={styles.genre} numberOfLines={1}>{genre}</Text>
+            <Text  testID={title} style={styles.title} numberOfLines={1}>{title}</Text>
+            <Text testID={genre} style={styles.genre} numberOfLines={1}>{genre}</Text>
 
         </TouchableOpacity>
 
